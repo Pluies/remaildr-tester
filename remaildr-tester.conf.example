@@ -1,0 +1,12 @@
+# The email account to send probes from
+email.username=
+email.password=
+
+# Where to send probes to
+remaildr.email.address=test@remaildr.com
+
+# Who/what to notify when things break
+notifications.email.address=
+notifications.sms.number=
+notifications.twilio.api.key=
+
