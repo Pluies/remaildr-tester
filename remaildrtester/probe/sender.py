@@ -32,7 +32,6 @@ class Sender:
         probe = RemotePoll(started_at=started_at,
                            status=RemotePoll.PENDING,
                            probe_id=probe_id)
-        probe.save()
         return probe
 
     def email_from_probe(probe):
@@ -54,3 +53,4 @@ class Sender:
             S.send_message(msg)
             logger.info('Email sent successfully ' +
                         'with probe_id %s' % probe.probe_id)
+        probe.save()
