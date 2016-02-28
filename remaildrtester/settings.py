@@ -125,17 +125,25 @@ STATIC_URL = '/static/'
 
 # Celery settings
 CELERY_RESULT_BACKEND = 'djcelery.backends.database:DatabaseBackend'
+CELERY_ACCEPT_CONTENT = ['json',]
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
 CELERY_IMPORTS = ("remaildrtester.tasks", )
 
 CELERYBEAT_SCHEDULE = {
-    'probe-every-hour': {
+    'probe-every-five-minutes': {
         'task': 'remaildrtester.tasks.send_probe',
-        'schedule': timedelta(minutes=60),
+        'schedule': timedelta(minutes=5),
         'args': ()
     },
     'imap-every-minute': {
         'task': 'remaildrtester.tasks.receive_probe',
         'schedule': timedelta(seconds=60),
+        'args': ()
+    },
+    'cleanup-every-hour': {
+        'task': 'remaildrtester.tasks.cleanup',
+        'schedule': timedelta(hours=1),
         'args': ()
     },
 }

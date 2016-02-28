@@ -7,4 +7,3 @@ urlpatterns = [
         url(r'^status$', views.status),
         url(r'^raw_all_statuses$', views.remote_polls),
 ]
-

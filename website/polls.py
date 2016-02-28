@@ -22,6 +22,7 @@ def uptime(array):
             "datapoints": (ok + fail),
             }
 
+
 def last_ok():
     return (RemotePoll
             .objects
@@ -29,10 +30,12 @@ def last_ok():
             .order_by('-started_at')
             .first())
 
+
 def all_polls_as_dicts():
     all_polls = RemotePoll.objects.order_by('-started_at')
     dicts = [model_to_dict(x) for x in all_polls]
     return dicts
+
 
 def status_summary():
     a_day_ago = arrow.utcnow().replace(days=-1)
