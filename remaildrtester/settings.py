@@ -33,6 +33,7 @@ ALLOWED_HOSTS = ['status.remaildr.com']
 
 INSTALLED_APPS = [
     'website.apps.WebsiteConfig',
+    'bootstrap3',
     'djcelery',
     'django.contrib.admin',
     'django.contrib.auth',

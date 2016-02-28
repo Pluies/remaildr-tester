@@ -24,12 +24,17 @@ def uptime(array):
             }
 
 
-def last_ok():
-    return (RemotePoll
-            .objects
-            .filter(status=RemotePoll.SUCCESS)
-            .order_by('-started_at')
-            .first())
+def updown_data():
+    last_probe = (RemotePoll.objects
+                  .exclude(status=RemotePoll.PENDING)
+                  .order_by('-started_at')
+                  .first())
+    status = "up" if last_probe.status == RemotePoll.SUCCESS else "down"
+    last_checked = arrow.get(last_probe.completed_at).humanize()
+    return {
+            "status": status,
+            "last_checked": last_checked,
+            }
 
 
 def all_polls_as_dicts():
