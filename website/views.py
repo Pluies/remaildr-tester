@@ -1,10 +1,13 @@
 from django.http import HttpResponse, JsonResponse
-from website.polls import all_polls_as_dicts
+from django.views.generic import TemplateView
+from website.polls import status_summary, all_polls_as_dicts
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the index.")
+class IndexView(TemplateView):
+    template_name = 'index.html'
 
+def status(request):
+    return JsonResponse({"status": status_summary()})
 
 def remote_polls(request):
     return JsonResponse({"polls": all_polls_as_dicts()})
