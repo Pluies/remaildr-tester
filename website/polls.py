@@ -17,8 +17,9 @@ def uptime(array):
             fail += 1
     if ok == 0 and fail == 0:
         return None
+    uptime_percentage = 100 * (ok / (ok + fail))
     return {
-            "uptime": 100 * (ok / (ok + fail)),
+            "uptime": uptime_percentage,
             "datapoints": (ok + fail),
             }
 
