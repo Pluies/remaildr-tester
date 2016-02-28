@@ -2,7 +2,7 @@ var StatusCircleList = React.createClass({
   render: function() {
     var statusCircleNodes = this.props.data.map(function(s) {
       return (
-	<StatusCircle uptime={s.uptime} interval={s.key} key={s.key}/>
+	<StatusCircle uptime={s.uptime} uptime_rounded={s.uptime_rounded} interval={s.key} key={s.key}/>
       );
     });
     return (
@@ -18,7 +18,7 @@ var StatusCircle = React.createClass({
     return (
 <div>
   <h2>{this.props.interval}</h2>
-  <div className="radial-progress" data-progress={this.props.uptime}>
+  <div className="radial-progress" data-progress={this.props.uptime_rounded}>
     <div className="circle">
       <div className="mask full">
         <div className="fill"></div>
